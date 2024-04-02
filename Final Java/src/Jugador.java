@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 
 public class Jugador {
+    public Jugador() {
+    }
+
     private String nombreJugador;
 
     private ArrayList<Personaje> mazo = new ArrayList<>();
