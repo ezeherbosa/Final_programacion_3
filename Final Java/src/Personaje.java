@@ -25,7 +25,7 @@ public abstract class Personaje{
     private String clase;
 
 
-    //Creo dos constructores, el primero es para ingresar la fecha a mano, el segundo recibe un localDate y crea el objeto automaticamente, se repite en clases hijas.
+    //Creo dos constructores, el primero es para ingresar la fecha a mano, el segundo recibe un localDate y crea el objeto automaticamente.
     public Personaje(String nombre, String apodo, int diaNac, int mesNac, int anoNac, int salud, int velocidad, int destreza, int fuerza, int nivel, int armadura) {
         this.nombre = nombre;
         this.apodo = apodo;

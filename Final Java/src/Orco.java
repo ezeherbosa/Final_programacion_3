@@ -16,22 +16,22 @@ public class Orco extends Personaje{
 
     public String toString() {
         return "Personaje{" +
-                "clase='" + "ORCO" + '\'' +
-                " nombre='" + getNombre() + '\'' +
-                ", apodo='" + getApodo() + '\'' +
-                ", fechaNacimiento=" + getFechaNacimiento() +
-                ", edad=" + getEdad() +
-                ", salud=" + getSalud() +
-                ", velocidad=" + getVelocidad() +
-                ", destreza=" + getDestreza() +
-                ", fuerza=" + getFuerza() +
-                ", nivel=" + getNivel() +
-                ", armadura=" + getArmadura() +
-                ", valorAtaque=" + getValorAtaque() +
-                ", efectividadDisparo=" + getEfectividadDisparo() +
-                ", poderDisparo=" + getPoderDisparo() +
-                ", poderDefensa=" + getPoderDefensa() +
-                '}';
+                "\n   clase='" + "ORCO" +
+                "\n   nombre='" + getNombre() +
+                "\n   apodo='" + getApodo() +
+                "\n   fechaNacimiento=" + getFechaNacimiento() +
+                "\n   edad=" + getEdad() +
+                "\n   salud=" + getSalud() +
+                "\n   velocidad=" + getVelocidad() +
+                "\n   destreza=" + getDestreza() +
+                "\n   fuerza=" + getFuerza() +
+                "\n   nivel=" + getNivel() +
+                "\n   armadura=" + getArmadura() +
+                "\n   valorAtaque=" + getValorAtaque() +
+                "\n   efectividadDisparo=" + getEfectividadDisparo() +
+                "\n   poderDisparo=" + getPoderDisparo() +
+                "\n   poderDefensa=" + getPoderDefensa() +
+                "\n}";
     }
 
 

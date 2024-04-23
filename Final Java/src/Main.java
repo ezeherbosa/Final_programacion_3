@@ -1,52 +1,55 @@
-import javax.swing.*;
-import java.util.ArrayList;
+import java.util.Scanner;
 
+//falta terminar menu y leer + borrar archivos
 
 public class Main {
+
     public static void main(String[] args) {
 
-/*
-        Humano h1 = new Humano("asd","pepe",01,12,1930,4,2,7,4,1,8);
-        h1.setearPoderes(h1);
-        System.out.println(h1.toString());
 
-        System.out.println(  "daño: " +   (h1.Ataque(h1)));
-
-        System.out.println("-----------------");
+        Scanner scanner = new Scanner(System.in);
+        Archivos archivador = new Archivos();
 
 
-        Orco o1 = new Orco("orquer","tyu",19,10,0100,4,3,3,1,5,1);
-        o1.setearPoderes(o1);
-        System.out.println(o1.toString());
-
-        System.out.println(  "daño: " +   (o1.Ataque(o1)));
-
-        System.out.println("-----------------");
+        //System.out.println("name?\n");
+        //Jugador j1 = new Jugador(scanner.next());
+        Jugador j1 = new Jugador("HERBOSOR");
+        Jugador j2 = new Jugador("MAQUINIR");
 
 
-        Elfo e1 = new Elfo("elfer","zxc",25,10,1415,3,3,1,5,2,9);
-        e1.setearPoderes(e1);
-        System.out.println(e1.toString());;
-        System.out.println(  "daño: " +   (e1.Ataque(e1)));
 
-/*
-        Menu menu = new Menu();
-
-
-        try{
-            menu.iniciaMenu();
-        }
-        catch (Exception e){
-            System.out.println("no se pudo");
-        }
-
-*/
-        Jugador j1 = new Jugador("eze");
-        Jugador j2 = new Jugador("maquina");
 
         Partida partida = new Partida(j1,j2);
 
-        partida.repartirMazo();
+
+        /*
+        partida.crearMazoManual();
+
+        System.out.println(j1.getMazo());
+        System.out.println("/////////");
+        System.out.println(j2.getMazo());
+
+        */
+
+
+
+
+
+        partida.repartirMazo(partida.crearMazoAutomatico());
+
+        String log = "Partida iniciada: \n\n" +
+                      j1.getNombreJugador() + " - Vs - "+ j2.getNombreJugador() +
+                      "\n\nLOS PERSONAJES SE PRESENTAN:\n\n"+
+
+                    "Jugador 1: " + j1.getNombreJugador() + "\n"
+                                  + j1.imprimirMazoOriginal() + "\n"
+                                  +"  Vs.\n\n" +
+                    "Jugador 2: " + j2.getNombreJugador() + "\n"
+                                  + j2.imprimirMazoOriginal() + "\n";
+
+        System.out.println(log);
+        Archivos.anotar(log);
+
 
 
         Combate combate = new Combate();
@@ -58,25 +61,23 @@ public class Main {
             combate.combate(j1,j2);
         } else {
            combate.combate(j2,j1);
-        }
+            }
 
+        Trono trono = new Trono();
 
+        log = trono.imprimirTrono() +
+               "Herbosa Ezequiel\n" +
+               "UTN-FRBB\n" +
+               "Programacion III - 2023";
 
+        System.out.println(log);
+        Archivos.anotar(log);
 
-        System.out.println("Fin de Partida");
+        archivador.persistir(String.valueOf(archivador.precarga));
 
-
-
-
-
-
-
-
-
-
-    }
 
 
 
 
     }
+ }

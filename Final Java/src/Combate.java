@@ -1,6 +1,9 @@
+import java.sql.SQLOutput;
 import java.util.Random;
 
 public class Combate {
+
+    Archivos archivador = new Archivos();
 
     Random random = new Random();
 
@@ -9,9 +12,14 @@ public class Combate {
 
     public void combate(Jugador jugadorUno, Jugador jugadorDos) {
 
+        String log = ("Jugador " + jugadorUno.getNombreJugador() + " inicia el combate.\n" +
+                                    "\n++  Round: " + this.round + "  ++\n");
 
 
-        System.out.println("\n++  Round: " + this.round + "  ++\n");
+        System.out.println(log);
+        Archivos.anotar(log);
+        archivador.persistir(log);
+
 
         Personaje cartaUno = seleccionarCarta(jugadorUno);
         Personaje cartaDos = seleccionarCarta(jugadorDos);
@@ -27,13 +35,15 @@ public class Combate {
 
                 try {
                     cartaUno = seleccionarCarta(jugadorUno);        //seleccionar nueva carta
-                    System.out.println("\n++  Round: " + this.round + "  ++\n");
+                    log = "\n++  Round: " + this.round + "  ++\n";
+                    System.out.println(log);
+                    Archivos.anotar(log);
                 }catch (IndexOutOfBoundsException e){
-                    System.out.println(jugadorUno.getNombreJugador() + " Se ha quedado sin cartas");
+                    log = jugadorUno.getNombreJugador() + " Se ha quedado sin cartas";
+                    System.out.println(log);
+                    Archivos.anotar(log);
 
                 }
-
-
             }
 
             if (!comprobarSalud(cartaDos)){
@@ -41,25 +51,28 @@ public class Combate {
 
                 try {
                     cartaDos = seleccionarCarta(jugadorDos);
-                    System.out.println("\n--  Round: " + this.round + "  --\n");
+                    log = "\n++  Round: " + this.round + "  ++\n";
+                    System.out.println(log);
+                    Archivos.anotar(log);
                 }catch (IndexOutOfBoundsException e){
-                    System.out.println(jugadorDos.getNombreJugador() + " Se ha quedado sin cartas");
+                    log = jugadorDos.getNombreJugador() + " Se ha quedado sin cartas";
+                    System.out.println(log);
+                    Archivos.anotar(log);
 
                 }
-
-
-
             }
 
 
 
             while ((comprobarSalud(cartaUno)) && (comprobarSalud(cartaDos)) && (turno < 8)) {
 
-                System.out.println("\nTurno: " + turno);
+                log = "Turno: " + turno;
+                System.out.println(log);
+                Archivos.anotar(log);
 
 
-                if (comprobarTurno(jugadorUno)) {
-                    if (comprobarSalud(cartaUno)) {                                           //comprobar turno //comprobar pj vivo
+                if (comprobarTurno(jugadorUno)) {                           //comprobar turno
+                    if (comprobarSalud(cartaUno)) {                         //comprobar pj vivo
                         atacar(cartaUno, cartaDos);                         //atacar
                         cambiarTurno(jugadorUno, jugadorDos);
                         if (cartaDos.getSalud() == 0) {
@@ -82,19 +95,23 @@ public class Combate {
                 turno++;
 
                 if (turno == 8) {
-                    System.out.println("Se han jugado los 7 turnos establecidos.\nLos campeones se descansan.\nInicia nuevo round.");
+                    log = "Se han jugado los 7 turnos establecidos.\nLos campeones se descansan.\nInicia nuevo round.";
+                    System.out.println(log);
+                    Archivos.anotar(log);
                     turno = 1;
                     round++;
 
                     cartaUno = seleccionarCarta(jugadorUno);
                     cartaDos = seleccionarCarta(jugadorDos);
 
-                    System.out.println("\n--  Round " + round + "  --\n");
+                    log =   "\n++  Round " + round + "  ++\n" +
+                            "Ingresan nuevos luchadores:" +
+                            "\nJugador " + jugadorUno.getNombreJugador() + ", llama a: " + cartaUno.getNombre() + ", Alias: " + cartaUno.getApodo() +
+                            "\nJugador " + jugadorDos.getNombreJugador() + ", llama a: " + cartaDos.getNombre() + ", Alias: " + cartaDos.getApodo();
 
-                    System.out.println("Ingresan nuevos luchadores:");
+                    System.out.println(log);
+                    Archivos.anotar(log);
 
-                    System.out.println("\nJugador " + jugadorUno.getNombreJugador() + ", llama a: " + cartaUno.getNombre() + ", Alias: " + cartaUno.getApodo());
-                    System.out.println("\nJugador " + jugadorDos.getNombreJugador() + ", llama a: " + cartaDos.getNombre() + ", Alias: " + cartaDos.getApodo());
 
                 } // while turno
 
@@ -125,8 +142,6 @@ public class Combate {
 
 
     protected Boolean comprobarMazo(Jugador jugador) {
-//        System.out.println("\n jugador " + jugador.getNombreJugador() + " tiene " + jugador.getMazo().size() + " cartas.\n ");
-
         if (jugador.getMazo().isEmpty()) {
             return Boolean.FALSE;
         } else return Boolean.TRUE;
@@ -154,19 +169,28 @@ public class Combate {
 
         int danio = (int) atacante.calcularAtaque(defensor);
 
+        String log = atacante.getNombre() + " ataca a " + defensor.getNombre() + ", recibe " + danio + " puntos de daño.\n" +
+                     defensor.getNombre() + " le restan " + defensor.getSalud() + " puntos de vida.\n";
 
-        System.out.println(atacante.getNombre() + " ataca a " + defensor.getNombre() + ", recibe " + danio + " puntos de daño.");
-        System.out.println(defensor.getNombre() + " le restan " + defensor.getSalud() + " puntos de vida.\n");
+        System.out.println(log);
+        Archivos.anotar(log);
+
         if (defensor.getSalud() == 0) {
-            System.out.println("Está fuera de combate.");
-            System.out.println("Ha caido en el " + this.turno + "° turno.");
+            log = "Está fuera de combate.\n" +
+                  "Ha caido en el " + this.turno + "° turno."+
+                  "\nCampeon " + atacante.getNombre() + " obtiene 100 p de salud como recompensa";
 
+            System.out.println(log);
+            Archivos.anotar(log);
 
-
-            System.out.println("Campeon " + atacante.getNombre() + " obtiene 100 p de salud como recompensa");
             atacante.setSalud(atacante.getSalud() + 100);
-            System.out.println(atacante.getNombre() + ": " + atacante.getSalud() + ".");
-            System.out.println("\n--  Fin ROUND " + this.round + "  --\n");
+
+            log = atacante.getNombre() + ": " + atacante.getSalud() + "." +
+                  "\n\n--  Fin ROUND " + this.round + "  --\n";
+
+            System.out.println(log);
+            Archivos.anotar(log);
+
             round++;
 
         }
@@ -191,13 +215,13 @@ public class Combate {
             ganador = jugadorUno;
         }
 
+        String log = "JUGADOR: " + ganador.getNombreJugador() + " HA GANADO LA PARTIDA\n"+
+                     "\n\nRENDIMOS HOMENAJE AL EQUIPO GANADOR: \n"+
+                      ganador.imprimirMazoOriginal();
 
-            System.out.println("JUGADOR: " + ganador.getNombreJugador() + " HA GANADO LA PARTIDA");
-            ganador.imprimirMazoOriginal();
-
+        System.out.println(log);
+        Archivos.anotar(log);
     }
-
-
 
 
 }

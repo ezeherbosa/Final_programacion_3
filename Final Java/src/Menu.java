@@ -32,7 +32,8 @@ public void iniciaMenu(){
         case 6:
             System.out.println("seleccionaste 6"); break;
         default:
-           // iniciaMenu();
+            System.out.println("**Opcion invalida**");
+            iniciaMenu();
     }
 
 
