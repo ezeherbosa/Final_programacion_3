@@ -95,7 +95,8 @@ public class Combate {
                 turno++;
 
                 if (turno == 8) {
-                    log = "Se han jugado los 7 turnos establecidos.\nLos campeones se descansan.\nInicia nuevo round.";
+                    log = "Se han jugado los 7 turnos reglamentarios.\nLos campeones se descansan." +
+                          "\nInicia nuevo round.";
                     System.out.println(log);
                     Archivos.anotar(log);
                     turno = 1;

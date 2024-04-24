@@ -1,28 +1,33 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 
 public class Archivos {
 
-    protected String generarNombreArchivo() {
+    String nombreCarpeta = "C:\\Users\\Ezee\\Desktop\\logs_partidas\\";
 
+    protected String generarNombreArchivo() {
+/*
         LocalDateTime fechaActual = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd - HH mm ss");
         String fechaHoraActualFormateada = fechaActual.format(formatter);
 
-        //System.out.println(fechaHoraActualFormateada);
-
         return fechaHoraActualFormateada;
+ */
+        int nombre = contarArchivosCarpeta() + 1;
+
+        if (nombre<10){
+            String nombreConCero = "0"+String.valueOf(nombre);
+            return nombreConCero;
+        }
+        else return String.valueOf(nombre);
     }
 
     protected String generarRuta() {
-        String nombreCarpeta = "C:\\Users\\Ezee\\Desktop\\logs_partidas\\";
 
-        File carpeta = new File(nombreCarpeta);
+        File carpeta = new File(this.nombreCarpeta);
 
         if (!carpeta.exists()) {
             carpeta.mkdir();
@@ -30,7 +35,7 @@ public class Archivos {
 
 
         String nombreArchivo = "partida_" + generarNombreArchivo() + ".txt";
-        String rutaArchivo = nombreCarpeta + nombreArchivo;
+        String rutaArchivo = this.nombreCarpeta + nombreArchivo;
 
         return rutaArchivo;
 
@@ -54,16 +59,69 @@ public class Archivos {
     }
 
 
+    public int contarArchivosCarpeta(){
+        int archivosEncontrados = 0;
 
-   /* public void persistir(String cadena){
-        ArrayList <String> logs = new ArrayList<String>();
-        logs.add(cadena);
+        File f = new File(this.nombreCarpeta);
+        File[] contenido = f.listFiles();
 
-        for (String palabra : logs) {
-            guardar(palabra);
+        for (File cadena:contenido){
+            archivosEncontrados++;
+        }
+        return archivosEncontrados;
+    }
+
+    public void listaDeArchivos(){
+
+        File f = new File(this.nombreCarpeta);
+        File[] carpeta = f.listFiles();
+
+        List<String>archivos = new ArrayList<>();
+
+        for (File archivo:carpeta){
+            System.out.println(archivo.getName());
+        }
+    }
+
+    public void leerArchivo(){
+
+        System.out.print("\nSe ha encontrado: " + contarArchivosCarpeta() + " archivos.\n");
+
+        listaDeArchivos();
+
+        System.out.println("Escriba el nombre del archivo que desea leer: ");
+
+        Scanner scanner = new Scanner(System.in);
+        String seleccion = this.nombreCarpeta+scanner.nextLine();
+        //System.out.println(seleccion);
+        File archivoSeleccionado = new File(seleccion);
+
+
+
+        while (!archivoSeleccionado.exists()){
+            System.out.print("El archivo no existe o está mal escrito.\n" +
+                    "ingrese nuevamente: ");
+            seleccion = this.nombreCarpeta+scanner.nextLine();
+            archivoSeleccionado = new File(seleccion);
         }
 
-    }*/
+        FileReader archivo;
+        BufferedReader lector;
+
+        try{
+            archivo=new FileReader(archivoSeleccionado);
+            lector = new BufferedReader(archivo);
+            String cadena;
+
+            while ((cadena = lector.readLine()) != null){
+                System.out.println(cadena);
+            }
+
+        }catch (Exception e){
+            System.out.println("error al leer el archivo." + e.getMessage());
+        }
+
+    }
 
 
     File nombreArchivo = crearArchivo();

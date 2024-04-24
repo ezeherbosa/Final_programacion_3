@@ -23,10 +23,20 @@ public class Partida {
 
 
 
-    public Partida(Jugador jugadorUno, Jugador jugadorDos) {
+    public Partida() {
+        Scanner scanner = new Scanner(System.in);
 
-       this.jugadorUno = jugadorUno;
-       this.jugadorDos = jugadorDos;
+        System.out.println("Bienvenidos, antes de iniciar deben escoger un nomobre:");
+        System.out.print("\nNombre Jugador UNO: ");
+        Jugador j1 = new Jugador(scanner.nextLine());
+
+        System.out.print("Nombre Jugador DOS: ");
+        Jugador j2 = new Jugador(scanner.nextLine());
+
+        System.out.println("\nDatos guardados correctamente.\n\n");
+
+       this.jugadorUno = j1;
+       this.jugadorDos = j2;
 
     }
 
@@ -34,17 +44,12 @@ public class Partida {
         return jugadorUno;
     }
 
-    public void setJugadorUno(Jugador jugadorUno) {
-        this.jugadorUno = jugadorUno;
-    }
 
     public Jugador getJugadorDos() {
         return jugadorDos;
     }
 
-    public void setJugadorDos(Jugador jugadorDos) {
-        this.jugadorDos = jugadorDos;
-    }
+
 
 
 
@@ -274,7 +279,7 @@ public class Partida {
     protected void solicitarDatos(){
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("\nDatos del Guerrero: ");
+        System.out.println("\nDatos del Guerrero");
         System.out.print("Nombre: ");
         this.nombre = scanner.nextLine();
 

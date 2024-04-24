@@ -59,29 +59,18 @@ public class Jugador {
 
     public String imprimirMazoOriginal() {
         String mazo = "\n << Heroes >>\n";
-        //System.out.println(mazo);
         for (Personaje carta : mazoOriginal){
-            mazo = mazo +   "Nombre: " + carta.getNombre() +
-                            "\nAlias: " + carta.getApodo() +
-                            "\nclase: " + carta.getClass() +
-                            "\nNacimiento: "+ carta.getFechaNacimiento() +
-                            "\nEdad: " + carta.getEdad() +
-                            "\nStats: " + "Fuerza: " + carta.getFuerza() + " | Velocidad: " + carta.getVelocidad() +
-                            " | Destreza: " + carta.getDestreza() +
-                            "\n-------\n";
+            mazo = mazo +
+            "Nombre: " + carta.getNombre() +
+            "\nAlias: " + carta.getApodo() +
+            "\nclase: " + carta.getClass() +
+            "\nNacimiento: "+ carta.getFechaNacimiento() +
+            "\nEdad: " + carta.getEdad() +
+            "\nStats: " + "Fuerza: " + carta.getFuerza() + " | Velocidad: " + carta.getVelocidad() +
+            " | Destreza: " + carta.getDestreza() +
+            "\n-------\n";
         }
-
-
         return mazo;
-
-                /*
-                "Nombre: " + mazoOriginal.get(2).getNombre() +
-                "Alias: " + mazoOriginal.get(2).getApodo() +
-                "Clase: " + mazoOriginal.get(2).getClass() +
-                "Edad: " + mazoOriginal.get(2).getEdad() +
-                "Fecha nac: " + mazoOriginal.get(2).getFechaNacimiento() +
-                "--" + */
-
     }
 
     @Override

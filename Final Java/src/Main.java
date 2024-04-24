@@ -1,41 +1,26 @@
-import java.util.Scanner;
-
-//falta terminar menu y leer + borrar archivos
+//falta terminar menu y borrar archivos
 
 public class Main {
 
     public static void main(String[] args) {
 
-
-        Scanner scanner = new Scanner(System.in);
         Archivos archivador = new Archivos();
+        Menu menu = new Menu();
+        String log;
 
+        System.out.println("-WORLD OF COMBAT 3 ULTIMATE-\n");
 
-        //System.out.println("name?\n");
-        //Jugador j1 = new Jugador(scanner.next());
-        Jugador j1 = new Jugador("HERBOSOR");
-        Jugador j2 = new Jugador("MAQUINIR");
+        menu.iniciaMenu();
 
-
-
+/*
 
         Partida partida = new Partida(j1,j2);
 
 
-        /*
-        partida.crearMazoManual();
 
-        System.out.println(j1.getMazo());
-        System.out.println("/////////");
-        System.out.println(j2.getMazo());
+        //partida.crearMazoManual();
 
-        */
-
-
-
-
-
-        partida.repartirMazo(partida.crearMazoAutomatico());
+        //partida.repartirMazo(partida.crearMazoAutomatico());
 
         String log = "Partida iniciada: \n\n" +
                       j1.getNombreJugador() + " - Vs - "+ j2.getNombreJugador() +
@@ -62,7 +47,8 @@ public class Main {
         } else {
            combate.combate(j2,j1);
             }
-
+*/
+/*
         Trono trono = new Trono();
 
         log = trono.imprimirTrono() +
@@ -72,12 +58,11 @@ public class Main {
 
         System.out.println(log);
         Archivos.anotar(log);
+*/
+
+
+
 
         archivador.persistir(String.valueOf(archivador.precarga));
-
-
-
-
-
     }
  }
