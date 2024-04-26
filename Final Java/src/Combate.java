@@ -1,9 +1,6 @@
-import java.sql.SQLOutput;
 import java.util.Random;
 
 public class Combate {
-
-    Archivos archivador = new Archivos();
 
     Random random = new Random();
 
@@ -18,17 +15,12 @@ public class Combate {
 
         System.out.println(log);
         Archivos.anotar(log);
-        archivador.persistir(log);
-
 
         Personaje cartaUno = seleccionarCarta(jugadorUno);
         Personaje cartaDos = seleccionarCarta(jugadorDos);
 
 
-
         while (comprobarMazo(jugadorUno) && comprobarMazo(jugadorDos)) {
-
-
 
             if (!comprobarSalud(cartaUno)) {                    //comprobar jugadores vivos
                 jugadorUno.getMazo().remove(cartaUno);          //borrar pj muerto
@@ -42,7 +34,6 @@ public class Combate {
                     log = jugadorUno.getNombreJugador() + " Se ha quedado sin cartas";
                     System.out.println(log);
                     Archivos.anotar(log);
-
                 }
             }
 
@@ -58,18 +49,13 @@ public class Combate {
                     log = jugadorDos.getNombreJugador() + " Se ha quedado sin cartas";
                     System.out.println(log);
                     Archivos.anotar(log);
-
                 }
             }
 
-
-
             while ((comprobarSalud(cartaUno)) && (comprobarSalud(cartaDos)) && (turno < 8)) {
-
                 log = "Turno: " + turno;
                 System.out.println(log);
                 Archivos.anotar(log);
-
 
                 if (comprobarTurno(jugadorUno)) {                           //comprobar turno
                     if (comprobarSalud(cartaUno)) {                         //comprobar pj vivo
@@ -91,12 +77,10 @@ public class Combate {
                     }
                 }
 
-
                 turno++;
 
                 if (turno == 8) {
-                    log = "Se han jugado los 7 turnos reglamentarios.\nLos campeones se descansan." +
-                          "\nInicia nuevo round.";
+                    log = "Se han jugado los 7 turnos reglamentarios.\nLos campeones se descansan.\nInicia nuevo round.";
                     System.out.println(log);
                     Archivos.anotar(log);
                     turno = 1;
@@ -112,10 +96,7 @@ public class Combate {
 
                     System.out.println(log);
                     Archivos.anotar(log);
-
-
                 } // while turno
-
             }
 
         } //while pelea
@@ -123,15 +104,14 @@ public class Combate {
 
         comprobarGanador(jugadorUno,jugadorDos);
 
+        Trono trono = new Trono();
 
+        log = trono.imprimirTrono();
+        System.out.println(log);
+        Archivos.anotar(log);
 
 
     }//while rounds
-
-
-
-
-
 
 
     protected Personaje seleccionarCarta(Jugador jugador) {
@@ -140,7 +120,6 @@ public class Combate {
             return jugador.getMazo().get(random.nextInt(0, jugador.getMazo().size()));
         }else return jugador.getMazo().get(0);
     }
-
 
     protected Boolean comprobarMazo(Jugador jugador) {
         if (jugador.getMazo().isEmpty()) {
@@ -162,9 +141,7 @@ public class Combate {
             jugador1.setTurno(Boolean.TRUE);
             jugador2.setTurno(Boolean.FALSE);
         }
-
     }
-
 
     protected void atacar(Personaje atacante, Personaje defensor) {
 
@@ -193,9 +170,7 @@ public class Combate {
             Archivos.anotar(log);
 
             round++;
-
         }
-
     }
 
     protected Boolean comprobarSalud(Personaje carta) {
@@ -223,8 +198,6 @@ public class Combate {
         System.out.println(log);
         Archivos.anotar(log);
     }
-
-
 }
 
 

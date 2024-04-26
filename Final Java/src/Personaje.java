@@ -61,60 +61,16 @@ public abstract class Personaje{
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public String getApodo() {
         return apodo;
-    }
-
-    public void setApodo(String apodo) {
-        this.apodo = apodo;
     }
 
     public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
-
-        this.fechaNacimiento = fechaNacimiento;
-
-    }
-
-
-    public int getDiaNac() {
-        return diaNac;
-    }
-
-    public void setDiaNac(int diaNac) {
-        this.diaNac = diaNac;
-    }
-
-    public int getMesNac() {
-        return mesNac;
-    }
-
-    public void setMesNac(int mesNac) {
-        this.mesNac = mesNac;
-    }
-
-    public int getAnoNac() {
-        return anoNac;
-    }
-
-    public void setAnoNac(int anoNac) {
-        this.anoNac = anoNac;
-    }
-
-
     public int getEdad() {
         return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
     }
 
     public int getSalud() {
@@ -129,73 +85,36 @@ public abstract class Personaje{
         return velocidad;
     }
 
-    public void setVelocidad(int velocidad) {
-        this.velocidad = velocidad;
-    }
-
     public int getDestreza() {
         return destreza;
-    }
-
-    public void setDestreza(int destreza) {
-        this.destreza = destreza;
     }
 
     public int getFuerza() {
         return fuerza;
     }
 
-    public void setFuerza(int fuerza) {
-        this.fuerza = fuerza;
-    }
-
     public int getNivel() {
         return nivel;
-    }
-
-    public void setNivel(int nivel) {
-        this.nivel = nivel;
     }
 
     public int getArmadura() {
         return armadura;
     }
 
-    public void setArmadura(int armadura) {
-        this.armadura = armadura;
-    }
-
-
     public double getValorAtaque() {
         return valorAtaque;
-    }
-
-    public void setValorAtaque(double valorAtaque) {
-        this.valorAtaque = valorAtaque;
     }
 
     public double getEfectividadDisparo() {
         return efectividadDisparo;
     }
 
-    public void setEfectividadDisparo(double efectividadDisparo) {
-        this.efectividadDisparo = efectividadDisparo;
-    }
-
     public int getPoderDisparo() {
         return poderDisparo;
     }
 
-    public void setPoderDisparo(int poderDisparo) {
-        this.poderDisparo = poderDisparo;
-    }
-
     public int getPoderDefensa() {
         return poderDefensa;
-    }
-
-    public void setPoderDefensa(int poderDefensa) {
-        this.poderDefensa = poderDefensa;
     }
 
     public int calcularPoderDisparo(int destreza, int fuerza, int nivel) {

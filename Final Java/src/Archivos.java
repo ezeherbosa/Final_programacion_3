@@ -1,26 +1,21 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 
 public class Archivos {
 
+    Scanner scanner = new Scanner(System.in);
+
     String nombreCarpeta = "C:\\Users\\Ezee\\Desktop\\logs_partidas\\";
 
     protected String generarNombreArchivo() {
-/*
-        LocalDateTime fechaActual = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd - HH mm ss");
-        String fechaHoraActualFormateada = fechaActual.format(formatter);
 
-        return fechaHoraActualFormateada;
- */
         int nombre = contarArchivosCarpeta() + 1;
 
         if (nombre<10){
-            String nombreConCero = "0"+String.valueOf(nombre);
-            return nombreConCero;
+            return "0"+nombre;
         }
         else return String.valueOf(nombre);
     }
@@ -63,9 +58,9 @@ public class Archivos {
         int archivosEncontrados = 0;
 
         File f = new File(this.nombreCarpeta);
-        File[] contenido = f.listFiles();
+        File[] carpeta = f.listFiles();
 
-        for (File cadena:contenido){
+        for (File archivos:carpeta){
             archivosEncontrados++;
         }
         return archivosEncontrados;
@@ -75,8 +70,6 @@ public class Archivos {
 
         File f = new File(this.nombreCarpeta);
         File[] carpeta = f.listFiles();
-
-        List<String>archivos = new ArrayList<>();
 
         for (File archivo:carpeta){
             System.out.println(archivo.getName());
@@ -93,14 +86,12 @@ public class Archivos {
 
         Scanner scanner = new Scanner(System.in);
         String seleccion = this.nombreCarpeta+scanner.nextLine();
-        //System.out.println(seleccion);
         File archivoSeleccionado = new File(seleccion);
 
 
 
         while (!archivoSeleccionado.exists()){
-            System.out.print("El archivo no existe o está mal escrito.\n" +
-                    "ingrese nuevamente: ");
+            System.out.print("El archivo no existe o está mal escrito.\nIngrese nuevamente: ");
             seleccion = this.nombreCarpeta+scanner.nextLine();
             archivoSeleccionado = new File(seleccion);
         }
@@ -116,20 +107,45 @@ public class Archivos {
             while ((cadena = lector.readLine()) != null){
                 System.out.println(cadena);
             }
+            lector.close();
 
         }catch (Exception e){
             System.out.println("error al leer el archivo." + e.getMessage());
         }
 
+        System.out.print("Desea leer otro registro? S/N  ");
+        String opcion = scanner.nextLine().toLowerCase();
+        if (opcion.equals("s") || opcion.equals("si")){
+            leerArchivo();
+        }else if (opcion.equals("n") || opcion.equals("no")){
+            System.out.println("Lectura finalizada");
+        }
+
     }
 
+    public void elimirArchivos(){
 
-    File nombreArchivo = crearArchivo();
+        System.out.print("\nSe encontraron " + contarArchivosCarpeta() + " archivos.\n" +
+                "Esta acción no se puede deshacer, está seguro que desea eliminar todos los registros?.  S/N  ");
+        String opcion = scanner.nextLine().toLowerCase();
 
+        if (opcion.equals("s") || opcion.equals("si")){
 
+            File f = new File(this.nombreCarpeta);
+            File[] archivos = f.listFiles();
+
+            for (File archivo:archivos){
+                archivo.delete();
+            }
+
+            System.out.println("\nArchivos eliminados.\n");
+
+        }
+    }
 
     public void persistir(String log) {
 
+        File nombreArchivo = crearArchivo();
 
         try {
             FileWriter persistir = new FileWriter(nombreArchivo);
@@ -142,12 +158,17 @@ public class Archivos {
 
     }
 
-    static String precarga = "Registros: \n\n";
+    public String horaInicio(){
+        LocalDateTime fechaActual = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd - HH:mm:ss");
+        String fechaHoraActualFormateada = fechaActual.format(formatter);
+
+        return fechaHoraActualFormateada;
+    }
+
+    static String precarga = "Registros: ";
 
     public static void anotar(String text){
         precarga = precarga + (text + "\n");
     }
-
-
-
 }

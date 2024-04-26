@@ -20,21 +20,12 @@ public class Jugador {
         return nombreJugador;
     }
 
-    public void setNombreJugador(String nombreJugador) {
-        this.nombreJugador = nombreJugador;
-    }
-
     public ArrayList<Personaje> getMazo() {
         return mazo;
     }
 
     public void setMazo(ArrayList mazo) {
         this.mazo = mazo;
-    }
-
-
-    public ArrayList<Personaje> getMazoOriginal() {
-        return mazoOriginal;
     }
 
     public void setMazoOriginal(ArrayList<Personaje> mazoOriginal) {
@@ -73,9 +64,4 @@ public class Jugador {
         return mazo;
     }
 
-    @Override
-    public String toString() {
-        return
-                "mazoOriginal=" + mazoOriginal ;
-    }
 }

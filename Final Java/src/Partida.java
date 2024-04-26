@@ -20,12 +20,10 @@ public class Partida {
     protected int fuerza;
     protected int armadura;
 
-
+    Scanner scanner = new Scanner(System.in);
 
 
     public Partida() {
-        Scanner scanner = new Scanner(System.in);
-
         System.out.println("Bienvenidos, antes de iniciar deben escoger un nomobre:");
         System.out.print("\nNombre Jugador UNO: ");
         Jugador j1 = new Jugador(scanner.nextLine());
@@ -39,21 +37,6 @@ public class Partida {
        this.jugadorDos = j2;
 
     }
-
-    public Jugador getJugadorUno() {
-        return jugadorUno;
-    }
-
-
-    public Jugador getJugadorDos() {
-        return jugadorDos;
-    }
-
-
-
-
-
-
     public ArrayList<Personaje> crearMazoAutomatico(){
         Random random = new Random();
         int contador = 0;
@@ -114,7 +97,6 @@ public class Partida {
         ArrayList<Personaje>mazoJugadorUno = new ArrayList<Personaje>();
         ArrayList<Personaje>mazoJugadorDos = new ArrayList<Personaje>();
 
-
         int indice = numeroRandomDeArray(mazo);
             mazoJugadorUno.add(mazo.get(indice));
             mazo.remove(mazo.get(indice));
@@ -138,19 +120,9 @@ public class Partida {
         mazoJugadorDos.add(mazo.get(2));
         jugadorDos.setMazo(mazoJugadorDos);
         jugadorDos.setMazoOriginal((ArrayList)mazoJugadorDos.clone());
-
-
-
     }
 
-
-
-
     public Personaje crearPersonajeManual() throws InputNumericaExeption {
-
-
-
-        Scanner scanner = new Scanner(System.in);
 
         System.out.println("\n\nIndique clase de guerrero a crear, presione:\n" +
                 "1) Elfo\n" +
@@ -158,10 +130,7 @@ public class Partida {
                 "3) Orco\n");
         int opcion = inputControlado(1, 3, "Opcion");
 
-
         solicitarDatos();
-
-
 
         if (opcion == 1){
                 Elfo elfo = new Elfo(nombre,apodo,dia,mes,anio,1000,velocidad,destreza,fuerza,1,armadura);
@@ -180,20 +149,14 @@ public class Partida {
                 return orco;
         }
 
-
        return null;
        //ACA NO DEBERIA RETORNAR NULL, PERO ESTA CONTROLADA LA RUTINA, NO VA LLEGAR NUNCA ACÁ
-
     }
-
-
 
     protected boolean confirmaDatos(String opcion){
         opcion.toLowerCase();
-        //System.out.println(opcion);
 
         while ((!opcion.equals("s")) && (!opcion.equals("n"))){
-            Scanner scanner = new Scanner(System.in);
             System.out.println("Ingrese una opcion valida (S/N)");
             opcion = scanner.nextLine().toLowerCase();
         }
@@ -203,7 +166,6 @@ public class Partida {
         }
         else return Boolean.FALSE;
     }
-
 
     public void crearMazoManual(){
 
@@ -226,8 +188,7 @@ public class Partida {
 
     }
 
-
-    protected int ingresoInt(){
+    static int ingresoInt(){
         Scanner scanner = new Scanner(System.in);
         int valorIngresado=0;
 
@@ -246,7 +207,6 @@ public class Partida {
 
         return valorIngresado;
     }
-
 
 
     protected int inputControlado(int valorMin, int valorMax, String nombreVariable){
@@ -274,10 +234,7 @@ public class Partida {
 
     }
 
-
-
     protected void solicitarDatos(){
-        Scanner scanner = new Scanner(System.in);
 
         System.out.println("\nDatos del Guerrero");
         System.out.print("Nombre: ");
@@ -294,9 +251,6 @@ public class Partida {
         this.fuerza = inputControlado(1,10,"Fuerza");
         this.armadura = inputControlado(1,10,"Armadura");
 
-
-
-
         System.out.print("\n\nConfirma creacion de personaje? S/N  ");
 
         Boolean confirmarPersonaje = confirmaDatos(scanner.nextLine());
@@ -307,19 +261,14 @@ public class Partida {
             System.out.println("\nIngrese nuevamente los datos: \n");
             solicitarDatos();
         }
-
     }
-
-
 
     protected int numeroRandomDeArray(ArrayList array){
         Random random = new Random();
-
        return random.nextInt(array.size());
     }
 
-
-    }
+}
 
 
 

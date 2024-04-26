@@ -10,10 +10,6 @@ public class Orco extends Personaje{
         super(nombre, apodo, fechaNacimiento, salud, velocidad, destreza, fuerza, nivel, armadura);
     }
 
-
-
-
-
     public String toString() {
         return "Personaje{" +
                 "\n   clase='" + "ORCO" +
@@ -34,8 +30,6 @@ public class Orco extends Personaje{
                 "\n}";
     }
 
-
-
     @Override
     public double calcularAtaque(Personaje defensor) {
         double danio = (((getValorAtaque()*getEfectividadDisparo() - defensor.getPoderDefensa()/500)*100)*1.1);
@@ -44,9 +38,6 @@ public class Orco extends Personaje{
         if (defensor.getSalud()<0){                   //para que no queden numeros negativos
             defensor.setSalud(0);
         }
-
-
-
         return danio;
     }
 }

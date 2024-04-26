@@ -40,9 +40,11 @@ public class Trono {
                 "        ---=-==========-------==----=-------=============--=.  \n" +
                 "      .:-:::....        ==================          .....:::-. \n" +
                 "                       |  Fin de Partida  |                    \n" +
-                "                        ------------------ \n\n\n";
+                "                        ------------------ \n\n" +
+                "Herbosa Ezequiel\n" +
+                "UTN-FRBB\n" +
+                "Programacion III - 2023";
         return trono;
         }
-
     }
 

@@ -1,10 +1,11 @@
 import java.util.Scanner;
 
 public class Menu {
+    Scanner scanner = new Scanner(System.in);
 
 public void iniciaMenu() {
 
-    Scanner scanner = new Scanner(System.in);
+    Archivos archivos = new Archivos();
 
 
     System.out.println("MENU DEL JUEGO:\n");
@@ -14,7 +15,11 @@ public void iniciaMenu() {
     System.out.println("Opcion 4:  Borrar historial de partidas.");
     System.out.println("Opcion 5:  Salir.");
     System.out.print("\nOpcion n°: ");
-    int opcion = scanner.nextInt();
+
+    //hacer esto
+    int opcion = Partida.ingresoInt();//scanner.nextInt();
+
+
 
 
     switch (opcion) {
@@ -48,6 +53,8 @@ public void iniciaMenu() {
             } else {
                 combate.combate(partida.jugadorDos,partida.jugadorUno);
             }
+
+            controlMenu();
 
             break;
 
@@ -85,36 +92,53 @@ public void iniciaMenu() {
             } else {
                 combate.combate(partida.jugadorDos,partida.jugadorUno);
             }
-
+            controlMenu();
             break;
 
         case 3:
             System.out.println("Leer registro partidas anteriores.");
-
-            Archivos archivos = new Archivos();
             archivos.leerArchivo();
-
+            controlMenu();
             break;
         case 4:
             System.out.println("Borrar historial de partidas.");
+            archivos.elimirArchivos();
+            controlMenu();
             break;
         case 5:
-            System.out.println("PROGRAMA FINALIZADO.");
+            System.out.println("\nPROGRAMA FINALIZADO.");
             break;
         default:
             System.out.print("Opcion invalida, intente nuevamente:\n\n");
             iniciaMenu();
-
-
         }//switch
+
+
     }//menu
 
 
-    public void controlMenu(){
+    private void controlMenu(){
     //controlar bucles para ejecutar el menu sin cerrar el programa
+
+
+        System.out.print("\n\nPresione  \"S\"  si quiere ejecutar el menu.\nPresione  \"N\"  si quiere terminar el programa.\nOpcion:  ");
+
+        String opcion = scanner.nextLine().toLowerCase();
+
+        while (!opcion.equals("s") && (!opcion.equals("n"))){
+            System.out.print("\n\nPresione  \"S\"  si quiere ejecutar el menu.\nPresione  \"N\"  si quiere terminar el programa.\nOpcion:  ");
+            opcion = scanner.nextLine().toLowerCase();
+        }
+
+        if (opcion.equals("s")){
+            iniciaMenu();
+        }else {
+            System.out.println("\n\nPROGRAMA FINALIZADO.");
+        }
+
 
     }
 
-
+//Si pongo letra en opcion menu revienta
 
 }//clase

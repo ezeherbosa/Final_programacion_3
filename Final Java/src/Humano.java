@@ -5,12 +5,10 @@ public class Humano extends Personaje{
 
     public Humano(String nombre, String apodo, int diaNac, int mesNac, int anoNac, int salud, int velocidad, int destreza, int fuerza, int nivel, int armadura) {
         super(nombre, apodo, diaNac, mesNac, anoNac, salud, velocidad, destreza, fuerza, nivel, armadura);
-        String clase = "Humano";
     }
 
     public Humano(String nombre, String apodo, LocalDate fechaNacimiento, int salud, int velocidad, int destreza, int fuerza, int nivel, int armadura) {
         super(nombre, apodo, fechaNacimiento, salud, velocidad, destreza, fuerza, nivel, armadura);
-        String clase = "Humano";
     }
 
 
