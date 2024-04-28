@@ -8,7 +8,8 @@ public class Archivos {
 
     Scanner scanner = new Scanner(System.in);
 
-    String nombreCarpeta = "C:\\Users\\Ezee\\Desktop\\logs_partidas\\";
+    //String nombreCarpeta = "C:\\Users\\Ezee\\Desktop\\logs_partidas\\";
+    String nombreCarpeta = "C:\\logs_partidas\\";
 
     protected String generarNombreArchivo() {
 

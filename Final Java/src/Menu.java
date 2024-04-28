@@ -16,10 +16,7 @@ public void iniciaMenu() {
     System.out.println("Opcion 5:  Salir.");
     System.out.print("\nOpcion n°: ");
 
-    //hacer esto
     int opcion = Partida.ingresoInt();//scanner.nextInt();
-
-
 
 
     switch (opcion) {
@@ -118,8 +115,6 @@ public void iniciaMenu() {
 
 
     private void controlMenu(){
-    //controlar bucles para ejecutar el menu sin cerrar el programa
-
 
         System.out.print("\n\nPresione  \"S\"  si quiere ejecutar el menu.\nPresione  \"N\"  si quiere terminar el programa.\nOpcion:  ");
 
@@ -138,7 +133,5 @@ public void iniciaMenu() {
 
 
     }
-
-//Si pongo letra en opcion menu revienta
 
 }//clase
