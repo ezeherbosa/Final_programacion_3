@@ -13,6 +13,6 @@ public class Main {
 
         menu.iniciaMenu();
 
-        archivador.persistir(String.valueOf(archivador.precarga));
+      //  archivador.persistir(String.valueOf(archivador.precarga));
     }
  }

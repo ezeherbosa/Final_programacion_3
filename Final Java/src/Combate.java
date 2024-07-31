@@ -1,5 +1,6 @@
 import java.util.Random;
 
+
 public class Combate {
 
     Random random = new Random();
@@ -109,6 +110,10 @@ public class Combate {
         log = trono.imprimirTrono();
         System.out.println(log);
         Archivos.anotar(log);
+
+        Archivos archivador = new Archivos();
+        archivador.persistir(String.valueOf(archivador.precarga));
+
 
 
     }//while rounds

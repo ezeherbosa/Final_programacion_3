@@ -94,12 +94,20 @@ public void iniciaMenu() {
 
         case 3:
             System.out.println("Leer registro partidas anteriores.");
-            archivos.leerArchivo();
+            try {
+                archivos.leerArchivo();
+            } catch (Exception e){
+                System.out.println("\nNo se encontraron partidas anteriores.");
+                }
             controlMenu();
             break;
         case 4:
             System.out.println("Borrar historial de partidas.");
-            archivos.elimirArchivos();
+            try{
+                archivos.elimirArchivos();
+            } catch (Exception e){
+                System.out.println("\nNo se encontraron partidas anteriores.");
+            }
             controlMenu();
             break;
         case 5:

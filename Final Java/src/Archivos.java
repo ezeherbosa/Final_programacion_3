@@ -77,70 +77,80 @@ public class Archivos {
         }
     }
 
-    public void leerArchivo(){
+    public void leerArchivo() {
 
-        System.out.print("\nSe ha encontrado: " + contarArchivosCarpeta() + " archivos.\n");
+        if (contarArchivosCarpeta() > 0) {
 
-        listaDeArchivos();
+            System.out.print("\nSe ha encontrado: " + contarArchivosCarpeta() + " archivos.\n");
 
-        System.out.println("Escriba el nombre del archivo que desea leer: ");
+            listaDeArchivos();
 
-        Scanner scanner = new Scanner(System.in);
-        String seleccion = this.nombreCarpeta+scanner.nextLine();
-        File archivoSeleccionado = new File(seleccion);
+            System.out.println("Escriba el nombre del archivo que desea leer: ");
+
+            Scanner scanner = new Scanner(System.in);
+            String seleccion = this.nombreCarpeta + scanner.nextLine();
+            File archivoSeleccionado = new File(seleccion);
 
 
-
-        while (!archivoSeleccionado.exists()){
-            System.out.print("El archivo no existe o está mal escrito.\nIngrese nuevamente: ");
-            seleccion = this.nombreCarpeta+scanner.nextLine();
-            archivoSeleccionado = new File(seleccion);
-        }
-
-        FileReader archivo;
-        BufferedReader lector;
-
-        try{
-            archivo=new FileReader(archivoSeleccionado);
-            lector = new BufferedReader(archivo);
-            String cadena;
-
-            while ((cadena = lector.readLine()) != null){
-                System.out.println(cadena);
+            while (!archivoSeleccionado.exists()) {
+                System.out.print("El archivo no existe o está mal escrito.\nIngrese nuevamente: ");
+                seleccion = this.nombreCarpeta + scanner.nextLine();
+                archivoSeleccionado = new File(seleccion);
             }
-            lector.close();
 
-        }catch (Exception e){
-            System.out.println("error al leer el archivo." + e.getMessage());
-        }
+            FileReader archivo;
+            BufferedReader lector;
 
-        System.out.print("Desea leer otro registro? S/N  ");
-        String opcion = scanner.nextLine().toLowerCase();
-        if (opcion.equals("s") || opcion.equals("si")){
-            leerArchivo();
-        }else if (opcion.equals("n") || opcion.equals("no")){
-            System.out.println("Lectura finalizada");
+            try {
+                archivo = new FileReader(archivoSeleccionado);
+                lector = new BufferedReader(archivo);
+                String cadena;
+
+                while ((cadena = lector.readLine()) != null) {
+                    System.out.println(cadena);
+                }
+                lector.close();
+
+            } catch (Exception e) {
+                System.out.println("error al leer el archivo." + e.getMessage());
+            }
+
+            System.out.print("Desea leer otro registro? S/N  ");
+            String opcion = scanner.nextLine().toLowerCase();
+            if (opcion.equals("s") || opcion.equals("si")) {
+                leerArchivo();
+            } else if (opcion.equals("n") || opcion.equals("no")) {
+                System.out.println("Lectura finalizada");
+            }
+
+        }else {
+            System.out.println("\nNo se encontraron partidas guardadas.");
         }
 
     }
 
     public void elimirArchivos(){
 
-        System.out.print("\nSe encontraron " + contarArchivosCarpeta() + " archivos.\n" +
-                "Esta acción no se puede deshacer, está seguro que desea eliminar todos los registros?.  S/N  ");
-        String opcion = scanner.nextLine().toLowerCase();
+        if (contarArchivosCarpeta() == 0) {
+            System.out.printf("\nNo hay registros para borrar.");
+        }
+        else {
+            System.out.print("\nSe encontraron " + contarArchivosCarpeta() + " archivos.\n" +
+                    "Esta acción no se puede deshacer, está seguro que desea eliminar todos los registros?.  S/N  ");
+            String opcion = scanner.nextLine().toLowerCase();
 
-        if (opcion.equals("s") || opcion.equals("si")){
+            if (opcion.equals("s") || opcion.equals("si")) {
 
-            File f = new File(this.nombreCarpeta);
-            File[] archivos = f.listFiles();
+                File f = new File(this.nombreCarpeta);
+                File[] archivos = f.listFiles();
 
-            for (File archivo:archivos){
-                archivo.delete();
+                for (File archivo : archivos) {
+                    archivo.delete();
+                }
+
+                System.out.println("\nArchivos eliminados.\n");
+
             }
-
-            System.out.println("\nArchivos eliminados.\n");
-
         }
     }
 
